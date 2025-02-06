@@ -12,6 +12,8 @@ client.on(Events.ClientReady, readyClient => {
 });
 
 client.on(Events.InteractionCreate, async interaction => {
+  console.log("interaction")
+  console.log(interaction)
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === 'meidokick') {
