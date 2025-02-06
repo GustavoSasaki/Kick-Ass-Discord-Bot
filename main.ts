@@ -1,9 +1,8 @@
 import { Client, Events, GatewayIntentBits } from 'npm:discord.js';
-import { load } from 'https://deno.land/std@0.212.0/dotenv/mod.ts'
 import { registerCommands } from "./registerCommands.ts";
 import { guildsToKick, setCron } from "./cron.ts";
+import "https://deno.land/x/dotenv@v3.2.2/load.ts";
 
-const env = await load()
 await registerCommands()
 await setCron()
 export const client = new Client({ intents: [GatewayIntentBits.Guilds,GatewayIntentBits.GuildVoiceStates] });
@@ -23,5 +22,4 @@ client.on(Events.InteractionCreate, async interaction => {
   }
 });
 
-client.login(env.TOKEN);
-//try deploy again
+client.login(Deno.env.get("TOKEN"));

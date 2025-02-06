@@ -1,7 +1,5 @@
 import { REST, Routes } from 'npm:discord.js';
-import { load } from 'https://deno.land/std@0.212.0/dotenv/mod.ts'
-
-const env = await load()
+import "https://deno.land/x/dotenv@v3.2.2/load.ts";
 
 
 export async function registerCommands() {
@@ -12,12 +10,12 @@ const commands = [
   },
 ];
 
-const rest = new REST({ version: '10' }).setToken(env.TOKEN);
+const rest = new REST({ version: '10' }).setToken(Deno.env.get("TOKEN") ?? '');
 
 try {
   console.log('Started refreshing application (/) commands.');
 
-  await rest.put(Routes.applicationCommands(env.CLIENT_ID), { body: commands });
+  await rest.put(Routes.applicationCommands(Deno.env.get("CLIENT_ID") ?? ''), { body: commands });
 
   console.log('Successfully reloaded application (/) commands.');
 } catch (error) {
