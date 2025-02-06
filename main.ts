@@ -19,8 +19,9 @@ client.on(Events.InteractionCreate, async interaction => {
     const guildId = interaction.guildId
     if(guildId) guildsToKick.push(guildId)
       console.log(guildsToKick)
-    await interaction.reply('🧹よろしくおねがいします🧹');
+    await interaction.reply('🧹よろしくおねがいします🧹.');
   }
 });
 
 client.login(env.TOKEN);
+//try deploy again
